@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Pomodoro Timer</title>
+</head>
+<body>
+    <div id="app">
+        <div class="contenedor-principal">
+            <div class="contenedor-titulo">
+                <div class="titulo">
+                    <h1>Temporizador Pomodoro</h1>
+                    <h3>A ver si te concentras un poquito</h3>
+                </div>
+            </div>
+            <div class="contenedor-tiempo">
+                <div class="temporizador">
+                    <h2>{{ tiempoFormateado }}</h2>
+                </div>
+            </div>
+            <div class="contenedor-botones">
+                <div class="botones">
+                    <button class="boton btn-inicio" @click="iniciar">Iniciar</button>
+                    <button class="boton btn-pausa" @click="pausar">Pausar</button>
+                    <button class="boton btn-reset" @click="resetear">Reiniciar</button>
+                </div>
+            </div>
+                <div v-if="alertaActiva" class="alerta">
+                    <p>¡Tiempo finalizado!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fondo">
+        <img class="estrellitas fondo parpadeoIrreg" src="imagenes/estrellitas.png">
+        <img class="estrellas fondo parpadeoReg" src="imagenes/estrellasgrandes.png">
+        <img class="luna fondo" src="imagenes/lunita.png">
+        <img class="nube1 fondo movimiento1" src="imagenes/nube1.png">
+        <img class="nube2 fondo movimiento2" src="imagenes/nube2.png">
+        <img class="nube3 fondo movimiento3" src="imagenes/nube3.png">
+        <img class="nube4 fondo movimiento4" src="imagenes/nube4.png">
+        <img class="nube5 fondo movimiento5" src="imagenes/nube5.png">
+        <img class="nube6 fondo movimiento6" src="imagenes/nube6.png">
+        <img class="nube7 fondo movimiento7" src="imagenes/nube7.png">
+        <img class="postes fondo" src="imagenes/postesluz.png">
+        <img class="vallas fondo" src="imagenes/vallas.png">
+    </div>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> <!-- CDN de Vue 3 -->
+<script src="script.js"></script>
+</html>
