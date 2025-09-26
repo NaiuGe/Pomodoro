@@ -66,19 +66,17 @@ body{
 /* botones */
 
 .contenedor-botones {
+    display: flex;
     background-color: rgba(255, 255, 255, 0.733);
     margin-bottom: 3dvh;
-    padding: 1dvh 2dvh;
+    height: 11dvh;
+    padding: 2dvh 1dvh;
     border-radius: 1dvh;
     text-align: center;
     width: 70%;
-}
-
-.boton {
-    font-size: 1.8dvh;
-    font-family: 'Courier New', Courier, monospace;
-    color: rgb(46, 30, 46);
-    text-shadow: 1dvh 1dvh 2dvh rgba(0, 0, 0, 0.2);
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ----------- Estilos botones ----------- */
@@ -89,24 +87,19 @@ body{
     align-items: center;
 }
 
-.btn-inicio, .btn-pausa, .btn-reset {
+.icono-inicio, .icono-pausa , .icono-reseteo {
+    height: 5dvh;
     margin: 1dvh;
     padding: 1dvh;
     border-radius: 1dvh;
-    border: none;
-    background-color: rgb(218, 224, 229);
     cursor: pointer;
-    animation: backgroundColorChange 0.5s;
+    transition: all 0.3s ease-in-out;
 }
 
-.btn-inicio:hover {
-    background-color: rgb(120, 183, 144);
-}
-.btn-pausa:hover{
-    background-color: rgb(149, 167, 178);
-}
-.btn-reset:hover {
-    background-color: rgb(191, 106, 85);
+.icono-inicio:hover, .icono-pausa:hover, .icono-reseteo:hover {
+    filter: brightness(0.8);
+    height: 5.5dvh;
+    width: auto;
 }
 
 .alerta {

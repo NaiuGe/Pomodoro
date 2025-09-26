@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="imagenes/alarm-clock.png">
     <title>Pomodoro Timer</title>
 </head>
 <body>
@@ -22,9 +23,9 @@
             </div>
             <div class="contenedor-botones">
                 <div class="botones">
-                    <button class="boton btn-inicio" @click="iniciar">Iniciar</button>
-                    <button class="boton btn-pausa" @click="pausar">Pausar</button>
-                    <button class="boton btn-reset" @click="resetear">Reiniciar</button>
+                    <img src="imagenes/circle-pause.svg" class="icono-pausa"  @click="pausar">
+                    <img src="imagenes/circle-play.svg" class="icono-inicio" @click="iniciar">
+                    <img src="imagenes/circle-stop.svg" class="icono-reseteo" @click="resetear">
                 </div>
             </div>
                 <div v-if="alertaActiva" class="alerta">

@@ -7,7 +7,7 @@ Vue.createApp({
             enMarcha: false, //variable para saber si el temporizador esta activado o no. Sirve para evitar que se creen varios intervalos al hacer click en iniciar varias veces.
             duracionDefault: 0.1 * 60, //duracion por defecto del temporizador en segundos
             pomodorosTerminados: 0, //contador de pomodoros terminados
-            alertaActiva: false
+            alertaActiva: false,
         }
     }, 
     computed: { //computed es una propiedad que se usa para calcular valores basados en otras propiedades. Se usa como una propiedad, pero es una funcion.
