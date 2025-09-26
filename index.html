@@ -13,9 +13,27 @@
             <div class="contenedor-titulo">
                 <div class="titulo">
                     <h1>Temporizador Pomodoro</h1>
-                    <h3>A ver si te concentras un poquito</h3>
+                    <h3 v-if="!enDescanso">A ver si te concentras un poquito</h3>
+                    <h3 v-else>¡Disfruta tu descanso!</h3>
                 </div>
             </div>
+            <div class="contenedor-progreso">
+                <div class="contenedor-config">
+                    <label for="ciclos">Cantidad de ciclos:</label>
+                    <input type="number" id="ciclos" v-model.number="ciclosObjetivo" min="1" max="12">
+                </div>
+                
+                <div class="contenedor-contador">
+                    <h3>Progreso:</h3>
+                    <div class="ciclos">
+                        <span v-for="(hecho, i) in progresoVisual" :key="i">
+                            {{ hecho ? "✔" : "○" }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+                
+
             <div class="contenedor-tiempo">
                 <div class="temporizador">
                     <h2>{{ tiempoFormateado }}</h2>

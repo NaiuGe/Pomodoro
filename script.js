@@ -1,12 +1,16 @@
 Vue.createApp({
-    el: "#app",
     data(){ 
         return {
+            duracionTrabajo: 0.1 * 60, //25 minutos en segundos
+            duracionDescanso: 0.2 * 60, //5 minutos en segundos
             tiempo: 0.1 * 60, //25 minutos en segundos
+
             intervalo: null, //variable para almacenar el intervalo del temporizador. Sirve para pausar/limpiar el setInterval.
             enMarcha: false, //variable para saber si el temporizador esta activado o no. Sirve para evitar que se creen varios intervalos al hacer click en iniciar varias veces.
-            duracionDefault: 0.1 * 60, //duracion por defecto del temporizador en segundos
-            pomodorosTerminados: 0, //contador de pomodoros terminados
+            enDescanso: false, //variable para saber si estamos en periodo de descanso o de trabajo.
+
+            ciclosTerminados: 0, //contador de pomodoros terminados
+            ciclosObjetivo: 4, //objetivo editable por usuario
             alertaActiva: false,
         }
     }, 
@@ -23,12 +27,16 @@ Vue.createApp({
             let ss = segundos.toString().padStart(2, "0");
 
             return `${mm}:${ss}`; //retornamos una cadena de texto con el formato mm:ss
-        }},
+        },
+        progresoVisual(){
+            // genera un array con true/false para pintar
+            return Array.from({length: this.ciclosObjetivo}, (_, i) => i < this.ciclosTerminados);
+        }
+    },
     methods: {
         iniciar(){
             //Evitar que se dupliquen los intervalos.
             if (this.enMarcha) return;
-
             //indicamos que el temporizador esta en marcha.
             this.enMarcha = true;
 
@@ -42,14 +50,29 @@ Vue.createApp({
                     this.intervalo = null; //reiniciamos la variable intervalo a null.
                     this.enMarcha = false; //indicamos que el temporizador ya no esta en marcha.
 
-                    //alerta
+                    //alerta visual
                     this.alertaActiva = true;
                     setTimeout(() => {
                         this.alertaActiva = false;
                     }, 3000);
 
-                    this.pomodorosTerminados++; //incrementamos el contador de pomodoros terminados.
-                    this.resetear(); //reiniciamos el temporizador al valor por defecto.
+                    if (!this.enDescanso) {
+                        // terminó un pomodoro → pasamos a descanso
+                        this.ciclosTerminados++;
+                        this.enDescanso = true;
+
+                        if (this.ciclosTerminados >= this.ciclosObjetivo){
+                            return; //si se alcanzó el objetivo, no iniciar más ciclos.
+                        }
+
+                        this.tiempo = this.duracionDescanso;
+                        this.iniciar(); // arranca el descanso
+                    } else {
+                        // terminó el descanso → volvemos al trabajo
+                        this.enDescanso = false;
+                        this.tiempo = this.duracionTrabajo;
+                        this.iniciar(); // arranca nuevo pomodoro
+                    }
                 }
             }, 1000); //1000 milisegundos = 1 segundo.  Es parte de lafunción "setInterval", el primer parámetro es la función que se ejecutará y el segundo parámetro es el intervalo de tiempo en milisegundos.
         },
@@ -62,8 +85,11 @@ Vue.createApp({
         },
         resetear(){
             clearInterval(this.intervalo);
-            this.tiempo = this.duracionDefault; //reiniciamos el tiempo al valor por defecto.
+            this.intervalo = null; //reiniciamos la variable intervalo a null.
             this.enMarcha = false; //indicamos que el temporizador ya no esta en marcha.
+            this.enDescanso = false; //reiniciamos el estado a periodo de trabajo.
+            this.tiempo = this.duracionTrabajo; //reiniciamos el tiempo al valor por defecto.
+            this.ciclosTerminados = 0; //reiniciamos el contador de ciclos terminados.
         }
     }
 }).mount('#app'); //montamos la aplicacion en el div con id "app"

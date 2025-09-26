@@ -17,7 +17,6 @@ body{
     justify-content: space-evenly;
     padding: 3dvh;
     height: auto;
-    margin-top: 4dvh;
     width: 80%;
 }
 
@@ -110,7 +109,49 @@ body{
     text-align: center;
     margin-top: 2dvh;
     font-weight: bold;
+    position: sticky;
 }
+
+
+/* ----------- Estilos progreso ----------- */
+.contenedor-progreso {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.733);
+    margin-bottom: 3dvh;
+    padding: 3dvh 2dvh;
+    border-radius: 1dvh;
+    text-align: center;
+    width: 70%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.contenedor-config{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-size: 2dvh;
+    margin-bottom: 1dvh;
+    color: rgb(46, 30, 46);
+    text-shadow: 1dvh 1dvh 2dvh rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+#ciclos {
+    padding: 0.5dvh;
+    width: 4dvh;;
+    font-size: 2dvh;
+}
+
+.ciclos span {
+    font-size: 3dvh;
+    margin: 0 0.5dvh;
+    color: rgb(145, 49, 164);
+}
+
 
 /* ----------- Animación y estilos para el fondo ----------- */
 
